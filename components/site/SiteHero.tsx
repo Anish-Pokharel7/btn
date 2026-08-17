@@ -62,7 +62,11 @@ export default function SiteHero() {
               variant="outline"
               className="h-auto bg-[#24292e]/70 hover:bg-[#2f353d]/90 text-white border border-white/20 backdrop-blur-md font-semibold text-base sm:text-lg px-7 py-3.5 rounded-2xl shadow-lg transition-all duration-200 cursor-pointer"
             >
-              <Link href="/volunteer">
+              <Link
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfV39BVLOhuJ2iFS3WWAcaZPGFVyWatiUU6HQ-Gp0CGMejv5g/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span>Become a Volunteer</span>
               </Link>
             </Button>
