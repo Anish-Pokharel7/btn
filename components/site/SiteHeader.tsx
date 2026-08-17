@@ -16,6 +16,7 @@ interface NavLink {
   href: string;
   hasDropdown?: boolean;
   dropdown?: SubLink[];
+  external?: boolean;
 }
 
 const navLinks: NavLink[] = [
@@ -25,7 +26,7 @@ const navLinks: NavLink[] = [
   { label: "Projects", href: "/projects" },
   { label: "Stories", href: "/stories" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Get Involved", href: "/get-involved" },
+  { label: "Get Involved", href: "https://docs.google.com/forms/d/e/1FAIpQLSfV39BVLOhuJ2iFS3WWAcaZPGFVyWatiUU6HQ-Gp0CGMejv5g/viewform", external: true },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
   { label: "Donate", href: "/donate" },
@@ -112,6 +113,7 @@ const MainBar = () => {
                   <Link
                     href={link.href}
                     className="px-3 xl:px-3.5 py-1.5 text-xs xl:text-sm font-medium inline-flex items-center gap-1.5 rounded-lg whitespace-nowrap transition-colors"
+                    {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   >
                     <span>{link.label}</span>
                   </Link>
@@ -197,6 +199,7 @@ const MainBar = () => {
                       href={link.href}
                       className="w-full px-4 py-3 text-sm font-medium"
                       onClick={() => setIsMenuOpen(false)}
+                      {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     >
                       {link.label}
                     </Link>
