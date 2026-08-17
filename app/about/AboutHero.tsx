@@ -5,7 +5,7 @@ import { ArrowRight, Eye, Target } from "lucide-react";
 export default function AboutHero() {
   return (
     <section className="w-full bg-white py-12 md:py-16 lg:py-24 overflow-hidden px-4 md:px-8 lg:px-12">
-      <div className="w-full mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 xl:gap-16 items-center">
           {/* Left Column: Image with floating quote card */}
           <div className="lg:col-span-6 relative pb-10 sm:pb-8 lg:pb-0 group">

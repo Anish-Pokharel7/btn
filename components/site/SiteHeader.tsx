@@ -69,8 +69,9 @@ const MainBar = () => {
   return (
     <header
       ref={navRef}
-      className="w-full h-20 bg-white/95 backdrop-blur-md text-slate-800 flex items-center justify-between px-4 md:px-8 lg:px-12 sticky top-0 z-50 shadow-lg border-b-2 border-green-300"
+      className="w-full bg-white/95 backdrop-blur-md text-slate-800 sticky top-0 z-50 shadow-lg border-b-2 border-green-300"
     >
+      <div className="max-w-7xl mx-auto w-full h-20 flex items-center justify-between px-4 md:px-8 lg:px-12">
       {/* Logo */}
       <div className="flex items-center gap-3">
         <Link href="/" className="flex items-center group">
@@ -239,6 +240,7 @@ const MainBar = () => {
           </nav>
         </div>
       )}
+      </div>
     </header>
   );
 };
