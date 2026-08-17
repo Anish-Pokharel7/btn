@@ -1,4 +1,5 @@
 import AboutHero from "./AboutHero";
+import AboutVision from "./AboutVision";
 
 export const metadata = {
   title: "About Us | BTN Organization",
@@ -10,6 +11,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen w-full flex flex-col">
       <AboutHero />
+      <AboutVision />
     </main>
   );
 }
