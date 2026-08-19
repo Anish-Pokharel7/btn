@@ -24,10 +24,8 @@ const navLinks: NavLink[] = [
   { label: "About", href: "/about" },
   { label: "Programs", href: "/programs" },
   { label: "Projects", href: "/projects" },
-  { label: "Stories", href: "/stories" },
   { label: "Gallery", href: "/gallery" },
   { label: "Get Involved", href: "https://docs.google.com/forms/d/e/1FAIpQLSfV39BVLOhuJ2iFS3WWAcaZPGFVyWatiUU6HQ-Gp0CGMejv5g/viewform", external: true },
-  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
   { label: "Donate", href: "/donate" },
 ];
@@ -70,7 +68,7 @@ const MainBar = () => {
   return (
     <header
       ref={navRef}
-      className="w-full bg-white/95 backdrop-blur-md text-slate-800 sticky top-0 z-50 shadow-lg border-b-2 border-green-300"
+      className="w-full bg-[#012358] backdrop-blur-md text-slate-800 sticky top-0 z-50 shadow-lg border-b border-[#005DCD]/30"
     >
       <div className="max-w-7xl mx-auto w-full h-20 flex items-center justify-between px-4 md:px-8 lg:px-12">
       {/* Logo */}
@@ -106,8 +104,8 @@ const MainBar = () => {
                 <div
                   className={`group flex items-center rounded-lg border transition-all duration-200 shadow-2xs hover:shadow-xs ${
                     isActive
-                      ? "border-[#0fb77a] bg-emerald-50/90 text-[#0da26c] font-semibold"
-                      : "border-slate-200/90 bg-white/90 hover:bg-emerald-50/40 hover:border-[#0fb77a] text-slate-700 hover:text-[#0da26c]"
+                      ? "border-[#FD6100] bg-orange-50/90 text-[#FD6100] font-semibold"
+                      : "border-[#E2E8F0] bg-white/90 hover:bg-blue-50/40 hover:border-[#005DCD] text-[#012358] hover:text-[#005DCD]"
                   }`}
                 >
                   <Link
@@ -125,7 +123,7 @@ const MainBar = () => {
                         e.preventDefault();
                         setOpenDropdown(isDropdownOpen ? null : link.label);
                       }}
-                      className="pr-2.5 pl-0.5 py-1.5 focus:outline-none text-slate-500 group-hover:text-[#0da26c] transition-colors"
+                      className="pr-2.5 pl-0.5 py-1.5 focus:outline-none text-[#64748B] group-hover:text-[#005DCD] transition-colors"
                       aria-label={`Toggle ${link.label} dropdown menu`}
                       aria-expanded={isDropdownOpen}
                     >
@@ -141,7 +139,7 @@ const MainBar = () => {
                 {/* Dropdown menu card if present */}
                 {link.dropdown && isDropdownOpen && (
                   <div
-                    className="absolute top-full left-0 mt-1 bg-white text-slate-800 rounded-xl shadow-xl border border-slate-200/80 p-2 min-w-48 flex flex-col gap-1 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                    className="absolute top-full left-0 mt-1 bg-white text-[#012358] rounded-xl shadow-xl border border-[#E2E8F0] p-2 min-w-48 flex flex-col gap-1 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
                     onMouseEnter={() => handleMouseEnter(link.label)}
                     onMouseLeave={() => handleMouseLeave()}
                   >
@@ -149,7 +147,7 @@ const MainBar = () => {
                       <Link
                         key={subItem.href}
                         href={subItem.href}
-                        className="text-xs xl:text-sm font-medium text-slate-700 hover:text-[#0da26c] hover:bg-emerald-50/60 rounded-lg px-3 py-2 border border-transparent hover:border-emerald-200/60 transition-all block whitespace-nowrap"
+                        className="text-xs xl:text-sm font-medium text-[#012358] hover:text-[#005DCD] hover:bg-blue-50/60 rounded-lg px-3 py-2 border border-transparent hover:border-[#005DCD]/30 transition-all block whitespace-nowrap"
                         onClick={() => setOpenDropdown(null)}
                       >
                         {subItem.label}
@@ -167,7 +165,7 @@ const MainBar = () => {
       <button
         type="button"
         onClick={() => setIsMenuOpen((prev) => !prev)}
-        className="flex lg:hidden items-center justify-center p-2 rounded-xl border border-slate-200 bg-slate-50/80 hover:bg-slate-100 text-slate-800 hover:text-slate-950 focus:outline-none transition-all shadow-2xs"
+        className="flex lg:hidden items-center justify-center p-2 rounded-xl border border-[#E2E8F0] bg-white/80 hover:bg-blue-50 text-white hover:text-[#005DCD] focus:outline-none transition-all shadow-2xs"
         aria-label="Toggle navigation menu"
         aria-expanded={isMenuOpen}
       >
@@ -180,7 +178,7 @@ const MainBar = () => {
 
       {/* Mobile / tablet dropdown (below lg) */}
       {isMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-md flex flex-col gap-3 px-6 py-6 lg:hidden border-t border-slate-200 shadow-xl max-h-[85vh] overflow-y-auto z-50">
+        <div className="absolute top-full left-0 w-full bg-[#F8F9FB] backdrop-blur-md flex flex-col gap-3 px-6 py-6 lg:hidden border-t border-[#E2E8F0] shadow-xl max-h-[85vh] overflow-y-auto z-50">
           <nav className="flex flex-col gap-2.5">
             {navLinks.map((link) => {
               const isSubOpen = mobileSubmenu === link.label;
@@ -191,8 +189,8 @@ const MainBar = () => {
                   <div
                     className={`flex items-center justify-between rounded-xl border transition-all duration-200 shadow-2xs ${
                       isActive
-                        ? "border-[#0fb77a] bg-emerald-50 text-[#0da26c] font-semibold"
-                        : "border-slate-200/90 bg-slate-50/70 hover:bg-emerald-50/50 hover:border-emerald-400 text-slate-800 font-medium"
+                        ? "border-[#FD6100] bg-orange-50 text-[#FD6100] font-semibold"
+                        : "border-[#E2E8F0] bg-white hover:bg-blue-50/50 hover:border-[#005DCD] text-[#012358] font-medium"
                     }`}
                   >
                     <Link
@@ -210,7 +208,7 @@ const MainBar = () => {
                         onClick={() =>
                           setMobileSubmenu(isSubOpen ? null : link.label)
                         }
-                        className="p-3 text-slate-600 hover:text-slate-900"
+                        className="p-3 text-[#64748B] hover:text-[#012358]"
                         aria-label={`Toggle ${link.label} submenu`}
                       >
                         <ChevronDown
@@ -229,7 +227,7 @@ const MainBar = () => {
                         <Link
                           key={subItem.href}
                           href={subItem.href}
-                          className="text-xs sm:text-sm font-normal text-slate-700 hover:text-emerald-700 bg-white border border-slate-200/80 rounded-lg px-3.5 py-2 hover:border-emerald-300 hover:bg-emerald-50/40 transition-all"
+                          className="text-xs sm:text-sm font-normal text-[#012358] hover:text-[#005DCD] bg-white border border-[#E2E8F0] rounded-lg px-3.5 py-2 hover:border-[#005DCD]/40 hover:bg-blue-50/40 transition-all"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {subItem.label}

@@ -4,7 +4,7 @@ import { ArrowRight, Eye, Target } from "lucide-react";
 
 export default function AboutHero() {
   return (
-    <section className="w-full bg-white py-12 md:py-16 lg:py-24 overflow-hidden px-4 md:px-8 lg:px-12">
+    <section className="w-full bg-[#F8F9FB] py-12 md:py-16 lg:py-24 overflow-hidden px-4 md:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 xl:gap-16 items-center">
           {/* Left Column: Image with floating quote card */}
@@ -26,7 +26,7 @@ export default function AboutHero() {
               <p className="text-slate-900 font-bold text-sm sm:text-base leading-snug">
                 &ldquo;Rooted in compassion, driven by sustainable action.&rdquo;
               </p>
-              <span className="block text-[#0fb77a] font-semibold text-xs sm:text-sm mt-2.5">
+              <span className="block text-[#005DCD] font-semibold text-xs sm:text-sm mt-2.5">
                 — Founder &amp; Executive Director
               </span>
             </div>
@@ -35,18 +35,18 @@ export default function AboutHero() {
           {/* Right Column: Content */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">
             {/* Tagline */}
-            <span className="text-[#0284c7] font-bold tracking-wider text-xs sm:text-sm uppercase mb-3">
+            <span className="text-[#005DCD] font-bold tracking-wider text-xs sm:text-sm uppercase mb-3">
               ABOUT OUR FOUNDATION
             </span>
 
             {/* Heading */}
-            <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold text-slate-950 tracking-tight leading-[1.18] mb-5">
+            <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold text-[#012358] tracking-tight leading-[1.18] mb-5">
               Paving the Way for a Brighter,
               <span className="block">Sustainable Future</span>
             </h1>
 
             {/* Paragraph Description */}
-            <p className="text-slate-600 text-sm sm:text-base md:text-[1.05rem] leading-relaxed mb-8">
+            <p className="text-[#64748B] text-sm sm:text-base md:text-[1.05rem] leading-relaxed mb-8">
               Established in 2026, Better Tomorrow Foundation started as a
               grassroots initiative by a small group of educators and social
               workers. Today, we operate across multiple regions, implementing
@@ -57,14 +57,14 @@ export default function AboutHero() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-6 w-full mb-8">
               {/* Our Vision */}
               <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-full bg-sky-100 text-[#0284c7] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-10 h-10 rounded-full bg-blue-100 text-[#005DCD] flex items-center justify-center shrink-0 mt-0.5">
                   <Eye className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col">
-                  <h3 className="font-bold text-slate-900 text-sm sm:text-base">
+                  <h3 className="font-bold text-[#012358] text-sm sm:text-base">
                     Our Vision
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-500 leading-relaxed mt-1">
+                  <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed mt-1">
                     An equitable world where every individual has access to
                     opportunities, dignity, and a healthy environment.
                   </p>
@@ -73,14 +73,14 @@ export default function AboutHero() {
 
               {/* Our Mission */}
               <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-full bg-emerald-100 text-[#0fb77a] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-10 h-10 rounded-full bg-orange-100 text-[#FD6100] flex items-center justify-center shrink-0 mt-0.5">
                   <Target className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col">
-                  <h3 className="font-bold text-slate-900 text-sm sm:text-base">
+                  <h3 className="font-bold text-[#012358] text-sm sm:text-base">
                     Our Mission
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-500 leading-relaxed mt-1">
+                  <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed mt-1">
                     To empower vulnerable communities through education,
                     healthcare, and sustainable environmental practices.
                   </p>
@@ -91,7 +91,7 @@ export default function AboutHero() {
             {/* Link */}
             <Link
               href="/governance"
-              className="inline-flex items-center gap-1.5 text-[#0284c7] hover:text-sky-700 font-semibold text-sm sm:text-base transition-colors group cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-[#005DCD] hover:text-[#012358] font-semibold text-sm sm:text-base transition-colors group cursor-pointer"
             >
               <span>Learn more about our governance &amp; reports</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
