@@ -10,7 +10,6 @@ import {
   Share2,
   Check,
   Users,
-  Sparkles,
   ArrowRight,
   Maximize2,
   X,
@@ -55,17 +54,20 @@ export const defaultUpcomingEvent: EventData = {
   highlights: [
     {
       title: "Save Up to 3 Lives",
-      description: "One single blood donation separates into critical red cells, platelets, and plasma.",
+      description:
+        "One single blood donation separates into critical red cells, platelets, and plasma.",
       icon: "heart",
     },
     {
       title: "Second Chance at Life",
-      description: "Directly assists local emergency trauma victims, maternal care, and surgical patients.",
+      description:
+        "Directly assists local emergency trauma victims, maternal care, and surgical patients.",
       icon: "shield",
     },
     {
       title: "Be a Community Hero",
-      description: "Receive donor certification and health checkup by certified medical volunteers.",
+      description:
+        "Receive donor certification and health checkup by certified medical volunteers.",
       icon: "award",
     },
   ],
@@ -164,7 +166,6 @@ export default function UpcomingEventCard({
               {/* Header Badges & Category */}
               <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 mb-4">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#005DCD]/10 border border-[#005DCD]/20 text-[#005DCD] text-xs font-bold tracking-wide uppercase">
-                  <Sparkles className="w-3.5 h-3.5" />
                   {event.category}
                 </span>
 
@@ -295,7 +296,7 @@ export default function UpcomingEventCard({
                 </Link>
 
                 <Link
-                  href="/contact"
+                  href="/contact-us"
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-[#E2E8F0] bg-white hover:bg-slate-50 text-[#012358] font-semibold text-sm transition-all hover:border-[#005DCD]/40 cursor-pointer"
                 >
                   <span>Contact Coordinator</span>
@@ -312,7 +313,9 @@ export default function UpcomingEventCard({
                   {copied ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-emerald-600" />
-                      <span className="text-emerald-600 font-medium">Link Copied!</span>
+                      <span className="text-emerald-600 font-medium">
+                        Link Copied!
+                      </span>
                     </>
                   ) : (
                     <>

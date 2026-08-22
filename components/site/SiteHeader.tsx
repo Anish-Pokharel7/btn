@@ -26,7 +26,7 @@ const navLinks: NavLink[] = [
   { label: "Projects", href: "/projects" },
   { label: "Gallery", href: "/gallery" },
   { label: "Get Involved", href: "https://docs.google.com/forms/d/e/1FAIpQLSfV39BVLOhuJ2iFS3WWAcaZPGFVyWatiUU6HQ-Gp0CGMejv5g/viewform", external: true },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact Us", href: "/contact-us" },
   { label: "Donate", href: "/donate" },
 ];
 
