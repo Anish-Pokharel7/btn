@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Sparkles } from "lucide-react";
 import type { Metadata } from "next";
+import UpcomingEventCard from "./UpcomingEventCard";
 
 export const metadata: Metadata = {
-  title: "Our Core Programs | BTN Organization",
+  title: "Our Core Programs & Upcoming Events | BTN Organization",
   description:
     "Comprehensive programs curated to create lasting, multi-generational impact across communities: Education, Healthcare, Women's Empowerment, and Environmental Conservation.",
 };
@@ -56,7 +57,7 @@ export default function ProgramsPage() {
   return (
     <main className="min-h-screen w-full flex flex-col bg-[#F8F9FB]">
       {/* Core Programs Section */}
-      <section className="w-full py-16 md:py-20 lg:py-24 px-4 md:px-8 lg:px-12">
+      <section className="w-full pt-16 md:pt-20 lg:pt-24 pb-12 md:pb-16 px-4 md:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto w-full">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14 md:mb-16">
@@ -117,6 +118,28 @@ export default function ProgramsPage() {
           </div>
         </div>
       </section>
+
+      {/* Upcoming Events Section */}
+      <section className="w-full pb-20 md:pb-24 lg:pb-28 px-4 md:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto w-full">
+          {/* Section Heading */}
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FD6100]/10 text-[#FD6100] font-bold tracking-wider text-xl sm:text-sm uppercase mb-3">
+              JOIN OUR NEXT DRIVE
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#012358] tracking-tight leading-tight mb-3 sm:mb-4">
+              Upcoming Events &amp; Initiatives
+            </h2>
+            <p className="text-[#64748B] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+              Take direct action on the ground. Participate, volunteer, or partner with us in our upcoming community welfare and health initiatives.
+            </p>
+          </div>
+
+          {/* Upcoming Event Card */}
+          <UpcomingEventCard />
+        </div>
+      </section>
     </main>
   );
 }
+
