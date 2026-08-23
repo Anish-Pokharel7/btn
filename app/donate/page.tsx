@@ -9,8 +9,8 @@ export default function DonatePage() {
   const [frequency, setFrequency] = useState<"one-time" | "monthly">("one-time");
   const [selectedAmount, setSelectedAmount] = useState<number | null>(50);
   const [customAmount, setCustomAmount] = useState<string>("50");
-  const [fullName, setFullName] = useState<string>("Thops manish");
-  const [email, setEmail] = useState<string>("thopsmanish@example.com");
+  const [fullName, setFullName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
   const handlePresetClick = (amount: number) => {
