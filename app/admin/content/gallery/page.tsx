@@ -1,5 +1,8 @@
+"use client";
+
 import AdminPage from "@/app/admin/layout";
-import { Search, MoreVertical, Edit, Trash2, Eye, Image, Upload, X } from "lucide-react";
+import Image from "next/image";
+import { Search, MoreVertical, Edit, Trash2, Eye, Upload, X, Image as LucideImage } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -206,10 +209,12 @@ export default function GalleryPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
                 <span className="text-white text-sm font-semibold w-full truncate block">{item.title}</span>
               </div>
-              <img
+              <Image
                 src={item.src}
                 alt={item.alt}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
               />
               <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent text-white">
                 <CategoryBadge category={item.category} />
@@ -220,7 +225,7 @@ export default function GalleryPage() {
         </div>
         {filteredItems.length === 0 && (
           <div className="p-12 text-center">
-            <Image className="w-12 h-12 text-[#E2E8F0] mx-auto mb-4" />
+            <LucideImage className="w-12 h-12 text-[#E2E8F0] mx-auto mb-4" aria-hidden="true" />
             <p className="text-[#64748B]">No images found</p>
           </div>
         )}
@@ -249,7 +254,7 @@ export default function GalleryPage() {
                     <option value="Education">Education</option>
                     <option value="Healthcare">Healthcare</option>
                     <option value="Environment">Environment</option>
-                    <option value="Women's Empowerment">Women's Empowerment</option>
+                    <option value="Women&apos;s Empowerment">Women&apos;s Empowerment</option>
                   </select>
                 </div>
                 <div>

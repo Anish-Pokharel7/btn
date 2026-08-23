@@ -1,5 +1,7 @@
+"use client";
+
 import AdminPage from "@/app/admin/layout";
-import { Search, Filter, MoreVertical, Edit, Trash2, Eye, Users, UserPlus, Mail, Shield, UserCheck, UserX, Activity, Calendar, Heart, DollarSign } from "lucide-react";
+import { Search, MoreVertical, Edit, Trash2, Eye, Users, Mail, Shield, UserCheck, UserX, Activity, Calendar, Heart, DollarSign } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 

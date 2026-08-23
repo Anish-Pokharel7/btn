@@ -16,7 +16,7 @@ export default function AdminLayout({ children, title = "Dashboard" }: AdminLayo
         <div className="p-4 md:p-6 lg:p-8">
           <div className="mb-6 md:mb-8">
             <h1 className="text-2xl md:text-3xl font-extrabold text-[#012358] tracking-tight">{title}</h1>
-            <p className="text-[#64748B] text-sm md:text-base mt-1">Manage your organization&spos;s content and settings</p>
+            <p className="text-[#64748B] text-sm md:text-base mt-1">Manage your organization&apos;s content and settings</p>
           </div>
           {children}
         </div>

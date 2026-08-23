@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Sun, Moon, LogOut, User, ChevronDown, Menu, Settings, LayoutDashboard, FolderKanban, Building2, Image, Heart, Users, X } from "lucide-react";
+import { Bell, Sun, Moon, LogOut, User, ChevronDown, Menu, Settings, LayoutDashboard, FolderKanban, Building2, Image, Heart, Users } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -203,11 +203,11 @@ export default function AdminHeader() {
 }
 
 const navItems = [
-  { label: "Dashboard", href: "/admin/dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
-  { label: "Projects", href: "/admin/content/projects", icon: <FolderKanban className="w-5 h-5" /> },
-  { label: "Programs", href: "/admin/content/programs", icon: <Building2 className="w-5 h-5" /> },
-  { label: "Gallery", href: "/admin/content/gallery", icon: <Image className="w-5 h-5" /> },
-  { label: "Donations", href: "/admin/donations", icon: <Heart className="w-5 h-5" /> },
-  { label: "Users", href: "/admin/users", icon: <Users className="w-5 h-5" /> },
-  { label: "Settings", href: "/admin/settings", icon: <Settings className="w-5 h-5" /> },
+  { label: "Dashboard", href: "/admin/dashboard", icon: <LayoutDashboard className="w-5 h-5" aria-hidden="true" /> },
+  { label: "Projects", href: "/admin/content/projects", icon: <FolderKanban className="w-5 h-5" aria-hidden="true" />, badge: "3" },
+  { label: "Programs", href: "/admin/content/programs", icon: <Building2 className="w-5 h-5" aria-hidden="true" />, badge: "4" },
+  { label: "Gallery", href: "/admin/content/gallery", icon: <Image className="w-5 h-5" aria-hidden="true" />, badge: "6" },
+  { label: "Donations", href: "/admin/donations", icon: <Heart className="w-5 h-5" aria-hidden="true" />, badge: "12" },
+  { label: "Users", href: "/admin/users", icon: <Users className="w-5 h-5" aria-hidden="true" /> },
+  { label: "Settings", href: "/admin/settings", icon: <Settings className="w-5 h-5" aria-hidden="true" /> },
 ];

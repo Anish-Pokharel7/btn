@@ -1,4 +1,7 @@
+"use client";
+
 import AdminPage from "@/app/admin/layout";
+import Image from "next/image";
 import { Plus, Search, MoreVertical, Edit, Trash2, Eye, Building2, Users, Heart, Sprout } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
@@ -172,7 +175,13 @@ export default function ProgramsPage() {
         {filteredPrograms.map((program) => (
           <div key={program.id} className="bg-white rounded-2xl border border-[#E2E8F0] overflow-hidden hover:shadow-lg hover:border-[#005DCD]/30 transition-all duration-300">
             <div className="relative aspect-[4/3] overflow-hidden">
-              <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
+              <Image
+                src={program.image}
+                alt={program.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              />
               <div className="absolute top-3 right-3">
                 <StatusBadge status={program.status} />
               </div>

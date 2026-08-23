@@ -1,5 +1,7 @@
+"use client";
+
 import AdminPage from "@/app/admin/layout";
-import { Search, Filter, MoreVertical, Eye, Edit, Trash2, Download, CreditCard, Wallet, DollarSign, Calendar, User, CheckCircle2, Clock, XCircle, ArrowUpRight } from "lucide-react";
+import { Search, MoreVertical, Eye, Edit, Trash2, Download, CreditCard, Wallet, DollarSign, Calendar, User, CheckCircle2, Clock, XCircle } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -118,7 +120,7 @@ const typeConfig = {
   Yearly: { color: "bg-purple-100 text-purple-700" },
 } as const;
 
-const paymentMethodIcons = {
+const paymentMethodIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   Card: CreditCard,
   UPI: Wallet,
   "Net Banking": DollarSign,
@@ -355,7 +357,10 @@ export default function DonationsPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-1.5 text-sm text-[#64748B]">
-                      <paymentMethodIcons[donation.paymentMethod] className="w-4 h-4" />
+                      {(() => {
+                        const Icon = paymentMethodIcons[donation.paymentMethod as keyof typeof paymentMethodIcons];
+                        return Icon ? <Icon className="w-4 h-4" /> : null;
+                      })()}
                       <span>{donation.paymentMethod}</span>
                     </div>
                   </td>

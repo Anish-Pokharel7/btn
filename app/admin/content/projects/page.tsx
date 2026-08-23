@@ -1,4 +1,7 @@
+"use client";
+
 import AdminPage from "@/app/admin/layout";
+import Image from "next/image";
 import { Plus, Search, MoreVertical, Edit, Trash2, Eye, MapPin, Clock, FolderKanban } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
@@ -170,8 +173,14 @@ export default function ProjectsPage() {
                 <tr key={project.id} className="hover:bg-[#F8F9FB] transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0">
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                      <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0 relative">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                          sizes="56px"
+                        />
                       </div>
                       <div>
                         <p className="font-medium text-[#012358]">{project.title}</p>

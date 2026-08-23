@@ -1,5 +1,7 @@
+"use client";
+
 import AdminPage from "@/app/admin/layout";
-import { Save, Bell, Shield, Globe, Palette, Database, Key, Trash2, Download, Upload, Eye, Check, X, Loader2, Mail, Phone } from "lucide-react";
+import { Save, Bell, Shield, Globe, Palette, Database, Key, Trash2, Download, Upload, Check, Loader2, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 
 const settingsSections = [
@@ -28,7 +30,7 @@ function SectionCard({ title, description, children, icon: Icon }: { title: stri
   );
 }
 
-function Toggle({ label, description, checked, onChange, disabled = false }) {
+function Toggle({ label, description, checked, onChange, disabled = false }: { label: string; description: string; checked: boolean; onChange: (v: boolean) => void; disabled?: boolean }) {
   return (
     <label className="flex items-center justify-between py-3 border-b border-[#E2E8F0]/50 last:border-0 cursor-pointer">
       <div className="flex-1">
@@ -154,6 +156,10 @@ export default function SettingsPage() {
     const key = `sk_${Math.random().toString(36).substring(2, 15)}${Math.random().toString(36).substring(2, 15)}`;
     setGeneratedKey(key);
     setShowNewKey(true);
+  };
+
+  const deleteApiKey = (id: number) => {
+    setApiKeys((prev) => prev.filter((k) => k.id !== id));
   };
 
   const renderSection = () => {
@@ -285,6 +291,7 @@ export default function SettingsPage() {
         return (
           <>
             <SectionCard title="Email Notifications" description="Configure which email notifications you receive" icon={Bell}>
+              <Toggle label="Enable Email Notifications" description="Master toggle for all email notifications" checked={emailNotifications} onChange={setEmailNotifications} />
               <Toggle label="New Donation Alerts" description="Receive email when a new donation is made" checked={donationAlerts} onChange={setDonationAlerts} />
               <Toggle label="New Volunteer Signups" description="Get notified when someone registers as a volunteer" checked={volunteerAlerts} onChange={setVolunteerAlerts} />
               <Toggle label="Project Updates" description="Receive updates when projects are created or modified" checked={projectUpdates} onChange={setProjectUpdates} />
@@ -378,7 +385,7 @@ export default function SettingsPage() {
                       <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${key.status === "Active" ? "bg-emerald-100 text-emerald-700" : "bg-rose-100 text-rose-700"}`}>
                         {key.status}
                       </span>
-                      <button className="p-2 rounded-lg text-[#64748B] hover:bg-[#E2E8F0] hover:text-[#012358]">
+                      <button onClick={() => deleteApiKey(key.id)} className="p-2 rounded-lg text-[#64748B] hover:bg-[#E2E8F0] hover:text-[#012358]">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
@@ -413,7 +420,7 @@ export default function SettingsPage() {
                   </button>
                 </div>
                 <div className="flex justify-end">
-                  <button onClick={() => { setShowNewKey(false); setGeneratedKey(""); }} className="text-sm text-[#005DCD] hover:underline">I've copied the key</button>
+                  <button onClick={() => { setShowNewKey(false); setGeneratedKey(""); }} className="text-sm text-[#005DCD] hover:underline">I&apos;ve copied the key</button>
                 </div>
               </SectionCard>
             )}
