@@ -83,10 +83,6 @@ export default function AdminNav() {
               <span className="text-xs font-bold text-[#005DCD] tracking-wider uppercase">
                 Better Tomorrow Nepal
               </span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#FD6100]/10 text-[#FD6100]">
-                <Sparkles className="w-2.5 h-2.5" />
-                ADMIN PORTAL
-              </span>
             </div>
             <h1 className="text-base sm:text-lg font-extrabold text-[#012358] tracking-tight">
               Management Workspace

@@ -81,7 +81,7 @@ function StatCard({ stat }: { stat: typeof stats[0] }) {
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[#64748B] text-sm font-medium uppercase tracking-wider mb-2">{stat.label}</p>
-          <p className="text-2xl font-extrabold text-[#012358] break-all tracking-tight leading-tight">{stat.value}</p>
+          <p className="text-2xl font-extrabold text-[#012358] whitespace-nowrap tracking-tight leading-tight">{stat.value}</p>
         </div>
         <div className={`w-12 h-12 rounded-xl ${stat.iconColor} flex items-center justify-center flex-shrink-0`}>
           <Icon className="w-6 h-6" />
