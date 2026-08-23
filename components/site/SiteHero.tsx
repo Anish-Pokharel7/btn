@@ -33,7 +33,9 @@ export default function SiteHero() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
             Together We Build a{" "}
             <span className="text-[#005DCD] font-bold">Better</span>
-            <span className="block text-[#FD6100] font-bold mt-1">Tomorrow</span>
+            <span className="block text-[#FD6100] font-bold mt-1">
+              Tomorrow
+            </span>
           </h1>
 
           {/* Description */}
@@ -48,10 +50,10 @@ export default function SiteHero() {
             {/* Donate Now Button */}
             <Button
               asChild
-              className="h-auto bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold text-base sm:text-lg px-7 py-3.5 rounded-2xl shadow-lg transition-all duration-200 border-0 cursor-pointer"
+              className="h-auto bg-[#FD6100] hover:bg-[#e05700] hover:text-black text-white font-semibold text-base sm:text-lg px-7 py-3.5 rounded-2xl shadow-lg transition-all duration-200 border-0 cursor-pointer"
             >
               <Link href="/donate" className="inline-flex items-center gap-2.5">
-                <Heart className="w-5 h-5 fill-white text-white" />
+                <Heart className="w-5 h-5 fill-white text-white hover:fill-black hover:text-black transition-colors duration-200" />
                 <span>Donate Now</span>
               </Link>
             </Button>
@@ -60,7 +62,7 @@ export default function SiteHero() {
             <Button
               asChild
               variant="outline"
-              className="h-auto bg-[#24292e]/70 hover:bg-[#2f353d]/90 text-white border border-white/20 backdrop-blur-md font-semibold text-base sm:text-lg px-7 py-3.5 rounded-2xl shadow-lg transition-all duration-200 cursor-pointer"
+              className="h-auto bg-transparent hover:bg-[#FD6100]/10 text-[#0400fd] hover:text-white border border-[#FD6100] backdrop-blur-md font-semibold text-base sm:text-lg px-7 py-3.5 rounded-2xl shadow-lg transition-all duration-200 cursor-pointer"
             >
               <Link
                 href="https://docs.google.com/forms/d/e/1FAIpQLSfV39BVLOhuJ2iFS3WWAcaZPGFVyWatiUU6HQ-Gp0CGMejv5g/viewform"
