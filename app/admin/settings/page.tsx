@@ -1,6 +1,5 @@
 "use client";
 
-import AdminPage from "@/app/admin/layout";
 import { Save, Bell, Shield, Globe, Palette, Database, Key, Trash2, Download, Upload, Check, Loader2, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 
@@ -433,7 +432,21 @@ export default function SettingsPage() {
   };
 
   return (
-    <AdminPage title="Settings">
+    <div>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#012358] tracking-tight">Settings</h2>
+          <p className="text-[#64748B] text-sm md:text-base mt-1">Configure your organization settings</p>
+        </div>
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="px-6 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+        >
+          {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
+          {saving ? "Saving..." : saved ? "Saved!" : "Save Changes"}
+        </button>
+      </div>
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Sidebar Navigation */}
         <aside className="lg:w-56 flex-shrink-0">
@@ -482,6 +495,6 @@ export default function SettingsPage() {
           <div className="space-y-6">{renderSection()}</div>
         </div>
       </div>
-    </AdminPage>
+    </div>
   );
 }

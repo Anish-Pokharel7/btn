@@ -1,8 +1,7 @@
 "use client";
 
-import AdminPage from "@/app/admin/layout";
 import Image from "next/image";
-import { Search, MoreVertical, Edit, Trash2, Eye, Upload, X, Image as LucideImage } from "lucide-react";
+import { Search, MoreVertical, Edit, Trash2, Eye, Upload, X, Image as LucideImage, Plus } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -135,15 +134,17 @@ export default function GalleryPage() {
   };
 
   return (
-    <AdminPage title="Gallery Management">
+    <div>
+      {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-lg font-semibold text-[#64748B]">Manage gallery images and media</h2>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#012358] tracking-tight">Gallery Management</h2>
+          <p className="text-[#64748B] text-sm md:text-base mt-1">Manage gallery images and media</p>
         </div>
         <div className="flex items-center gap-3">
           <button
-            onClick={() => setUploadModalOpen(true)}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all"
+          onClick={() => setUploadModalOpen(true)}
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
           >
             <Upload className="w-5 h-5" />
             Upload Images
@@ -270,6 +271,6 @@ export default function GalleryPage() {
           </div>
         </div>
       )}
-    </AdminPage>
+    </div>
   );
 }

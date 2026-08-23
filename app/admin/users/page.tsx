@@ -1,7 +1,6 @@
 "use client";
 
-import AdminPage from "@/app/admin/layout";
-import { Search, MoreVertical, Edit, Trash2, Eye, Users, Mail, Shield, UserCheck, UserX, Activity, Calendar, Heart, DollarSign } from "lucide-react";
+import { Search, MoreVertical, Edit, Trash2, Eye, Users, Mail, Shield, UserCheck, UserX, Activity, Calendar, Heart, DollarSign, Plus, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -198,13 +197,17 @@ function formatDateTime(dateString: string) {
 }
 
 function formatCurrency(amount: number) {
-  return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", minimumFractionDigits: 0 }).format(amount);
+  return `रु ${new Intl.NumberFormat("en-IN", { minimumFractionDigits: 0 }).format(amount)}`;
 }
 
 export default function UsersPage() {
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [newUser, setNewUser] = useState({
+    name: "", email: "", role: "Volunteer" as User["role"], status: "Active" as User["status"],
+  });
 
   const filteredUsers = users.filter((u) => {
     const matchesSearch = u.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -224,7 +227,22 @@ export default function UsersPage() {
   };
 
   return (
-    <AdminPage title="Users Management">
+    <div>
+      {/* Page Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#012358] tracking-tight">Users Management</h2>
+          <p className="text-[#64748B] text-sm md:text-base mt-1">Manage volunteers, donors, and staff members</p>
+        </div>
+        <button
+          onClick={() => setShowAddModal(true)}
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
+        >
+          <Plus className="w-5 h-5" />
+          Add User
+        </button>
+      </div>
+
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
         <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6">
@@ -380,6 +398,51 @@ export default function UsersPage() {
           </div>
         )}
       </div>
-    </AdminPage>
+
+      {/* Add User Modal */}
+      {showAddModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 animate-in fade-in duration-200" onClick={() => setShowAddModal(false)}>
+          <div className="bg-white rounded-2xl max-w-lg w-full animate-in zoom-in-95 slide-in-from-bottom-4 duration-200" onClick={(e) => e.stopPropagation()}>
+            <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between">
+              <h3 className="text-lg font-bold text-[#012358]">Add New User</h3>
+              <button onClick={() => setShowAddModal(false)} className="p-2 rounded-lg text-[#64748B] hover:bg-[#F8F9FB] cursor-pointer"><X className="w-5 h-5" /></button>
+            </div>
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-[#012358] mb-1">Full Name <span className="text-rose-500">*</span></label>
+                <input type="text" placeholder="Enter full name" value={newUser.name} onChange={(e) => setNewUser({ ...newUser, name: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-[#012358] mb-1">Email Address <span className="text-rose-500">*</span></label>
+                <input type="email" placeholder="user@email.com" value={newUser.email} onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Role</label>
+                  <select value={newUser.role} onChange={(e) => setNewUser({ ...newUser, role: e.target.value as User["role"] })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15">
+                    <option value="Admin">Admin</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Volunteer">Volunteer</option>
+                    <option value="Donor">Donor</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Status</label>
+                  <select value={newUser.status} onChange={(e) => setNewUser({ ...newUser, status: e.target.value as User["status"] })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15">
+                    <option value="Active">Active</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+              <div className="flex justify-end gap-3 pt-2">
+                <button onClick={() => setShowAddModal(false)} className="px-4 py-2.5 text-sm font-medium text-[#64748B] hover:bg-[#F8F9FB] rounded-xl cursor-pointer transition-colors">Cancel</button>
+                <button onClick={() => setShowAddModal(false)} className="px-5 py-2.5 text-sm font-semibold text-white bg-[#FD6100] hover:bg-[#e05700] rounded-xl cursor-pointer transition-colors">Add User</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

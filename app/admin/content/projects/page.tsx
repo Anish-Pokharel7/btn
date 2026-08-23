@@ -1,8 +1,7 @@
 "use client";
 
-import AdminPage from "@/app/admin/layout";
 import Image from "next/image";
-import { Plus, Search, MoreVertical, Edit, Trash2, Eye, MapPin, Clock, FolderKanban } from "lucide-react";
+import { Plus, Search, MoreVertical, Edit, Trash2, Eye, MapPin, Clock, FolderKanban, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -103,6 +102,10 @@ function ActionDropdown({ project }: { project: Project }) {
 export default function ProjectsPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [newProject, setNewProject] = useState({
+    title: "", location: "", description: "", status: "Ongoing" as Project["status"], budget: "", beneficiaries: "", progress: 0,
+  });
 
   const filteredProjects = projects.filter((p) => {
     const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase()) || p.location.toLowerCase().includes(search.toLowerCase());
@@ -111,19 +114,20 @@ export default function ProjectsPage() {
   });
 
   return (
-    <AdminPage title="Projects Management">
-      {/* Header Actions */}
+    <div>
+      {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-lg font-semibold text-[#64748B]">Manage field projects across regions</h2>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#012358] tracking-tight">Projects Management</h2>
+          <p className="text-[#64748B] text-sm md:text-base mt-1">Manage field projects across regions</p>
         </div>
-        <Link
-          href="/admin/content/projects/new"
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all"
+        <button
+          onClick={() => setShowAddModal(true)}
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
         >
           <Plus className="w-5 h-5" />
           Add Project
-        </Link>
+        </button>
       </div>
 
       {/* Search & Filters */}
@@ -225,6 +229,60 @@ export default function ProjectsPage() {
           </div>
         )}
       </div>
-    </AdminPage>
+
+      {/* Add Project Modal */}
+      {showAddModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 animate-in fade-in duration-200" onClick={() => setShowAddModal(false)}>
+          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-in zoom-in-95 slide-in-from-bottom-4 duration-200" onClick={(e) => e.stopPropagation()}>
+            <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between sticky top-0 bg-white">
+              <h3 className="text-lg font-bold text-[#012358]">Add New Project</h3>
+              <button onClick={() => setShowAddModal(false)} className="p-2 rounded-lg text-[#64748B] hover:bg-[#F8F9FB] cursor-pointer"><X className="w-5 h-5" /></button>
+            </div>
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-[#012358] mb-1">Project Title <span className="text-rose-500">*</span></label>
+                <input type="text" placeholder="Enter project title" value={newProject.title} onChange={(e) => setNewProject({ ...newProject, title: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Location</label>
+                  <input type="text" placeholder="e.g. Eastern District" value={newProject.location} onChange={(e) => setNewProject({ ...newProject, location: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Status</label>
+                  <select value={newProject.status} onChange={(e) => setNewProject({ ...newProject, status: e.target.value as Project["status"] })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15">
+                    <option value="Ongoing">Ongoing</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Draft">Draft</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-[#012358] mb-1">Description</label>
+                <textarea rows={3} placeholder="Describe the project..." value={newProject.description} onChange={(e) => setNewProject({ ...newProject, description: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15 resize-none" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Budget</label>
+                  <input type="text" placeholder="e.g. रु 25,00,000" value={newProject.budget} onChange={(e) => setNewProject({ ...newProject, budget: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Beneficiaries</label>
+                  <input type="text" placeholder="e.g. 1,200 Students" value={newProject.beneficiaries} onChange={(e) => setNewProject({ ...newProject, beneficiaries: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-[#012358] mb-1">Progress: {newProject.progress}%</label>
+                <input type="range" min={0} max={100} value={newProject.progress} onChange={(e) => setNewProject({ ...newProject, progress: parseInt(e.target.value) })} className="w-full accent-[#005DCD]" />
+              </div>
+              <div className="flex justify-end gap-3 pt-2">
+                <button onClick={() => setShowAddModal(false)} className="px-4 py-2.5 text-sm font-medium text-[#64748B] hover:bg-[#F8F9FB] rounded-xl cursor-pointer transition-colors">Cancel</button>
+                <button onClick={() => setShowAddModal(false)} className="px-5 py-2.5 text-sm font-semibold text-white bg-[#FD6100] hover:bg-[#e05700] rounded-xl cursor-pointer transition-colors">Create Project</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
-import AdminPage from "@/app/admin/layout";
-import { Search, MoreVertical, Eye, Edit, Trash2, Download, CreditCard, Wallet, DollarSign, Calendar, User, CheckCircle2, Clock, XCircle } from "lucide-react";
+import { Search, MoreVertical, Eye, Edit, Trash2, Download, CreditCard, Wallet, DollarSign, Calendar, User, CheckCircle2, Clock, XCircle, Plus, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -180,8 +179,8 @@ function ActionDropdown({ donation }: { donation: Donation }) {
   );
 }
 
-function formatCurrency(amount: number, currency: string) {
-  return new Intl.NumberFormat("en-IN", { style: "currency", currency, minimumFractionDigits: 0 }).format(amount);
+function formatCurrency(amount: number) {
+  return `रु ${new Intl.NumberFormat("en-IN", { minimumFractionDigits: 0 }).format(amount)}`;
 }
 
 function formatDate(dateString: string) {
@@ -199,6 +198,10 @@ export default function DonationsPage() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
   const [dateRange, setDateRange] = useState("all");
+  const [showRecordModal, setShowRecordModal] = useState(false);
+  const [newDonation, setNewDonation] = useState({
+    donorName: "", donorEmail: "", amount: "", type: "One-time", program: "Education", paymentMethod: "Card",
+  });
 
   const filteredDonations = donations.filter((d) => {
     const matchesSearch = d.donorName.toLowerCase().includes(search.toLowerCase()) ||
@@ -216,14 +219,29 @@ export default function DonationsPage() {
   const thisMonth = filteredDonations.filter((d) => new Date(d.date).getMonth() === new Date().getMonth()).length;
 
   return (
-    <AdminPage title="Donations Management">
+    <div>
+      {/* Page Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#012358] tracking-tight">Donations Management</h2>
+          <p className="text-[#64748B] text-sm md:text-base mt-1">Track and manage all donor contributions</p>
+        </div>
+        <button
+          onClick={() => setShowRecordModal(true)}
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
+        >
+          <Plus className="w-5 h-5" />
+          Record Donation
+        </button>
+      </div>
+
       {/* Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[#64748B] text-sm font-medium uppercase tracking-wider">Total Amount</p>
-              <p className="text-3xl font-extrabold text-[#012358] mt-1">{formatCurrency(totalAmount, "INR")}</p>
+              <p className="text-3xl font-extrabold text-[#012358] mt-1">{formatCurrency(totalAmount)}</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center">
               <DollarSign className="w-6 h-6" />
@@ -348,7 +366,7 @@ export default function DonationsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 font-semibold text-[#012358] text-lg">{formatCurrency(donation.amount, donation.currency)}</td>
+                  <td className="px-6 py-4 font-semibold text-[#012358] text-lg">{`रु ${new Intl.NumberFormat("en-IN").format(donation.amount)}`}</td>
                   <td className="px-6 py-4"><TypeBadge type={donation.type} /></td>
                   <td className="px-6 py-4">
                     <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
@@ -379,6 +397,69 @@ export default function DonationsPage() {
           </div>
         )}
       </div>
-    </AdminPage>
+
+      {/* Record Donation Modal */}
+      {showRecordModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 animate-in fade-in duration-200" onClick={() => setShowRecordModal(false)}>
+          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-in zoom-in-95 slide-in-from-bottom-4 duration-200" onClick={(e) => e.stopPropagation()}>
+            <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between sticky top-0 bg-white">
+              <h3 className="text-lg font-bold text-[#012358]">Record New Donation</h3>
+              <button onClick={() => setShowRecordModal(false)} className="p-2 rounded-lg text-[#64748B] hover:bg-[#F8F9FB] cursor-pointer"><X className="w-5 h-5" /></button>
+            </div>
+            <div className="p-6 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Donor Name <span className="text-rose-500">*</span></label>
+                  <input type="text" placeholder="Full name" value={newDonation.donorName} onChange={(e) => setNewDonation({ ...newDonation, donorName: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Email</label>
+                  <input type="email" placeholder="donor@email.com" value={newDonation.donorEmail} onChange={(e) => setNewDonation({ ...newDonation, donorEmail: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Amount (रु) <span className="text-rose-500">*</span></label>
+                  <input type="number" placeholder="0" value={newDonation.amount} onChange={(e) => setNewDonation({ ...newDonation, amount: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Donation Type</label>
+                  <select value={newDonation.type} onChange={(e) => setNewDonation({ ...newDonation, type: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15">
+                    <option value="One-time">One-time</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Yearly">Yearly</option>
+                  </select>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Program</label>
+                  <select value={newDonation.program} onChange={(e) => setNewDonation({ ...newDonation, program: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15">
+                    <option value="Education">Education</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Environment">Environment</option>
+                    <option value="Women's Empowerment">Women&apos;s Empowerment</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-[#012358] mb-1">Payment Method</label>
+                  <select value={newDonation.paymentMethod} onChange={(e) => setNewDonation({ ...newDonation, paymentMethod: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15">
+                    <option value="Card">Card</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Net Banking">Net Banking</option>
+                    <option value="Wallet">Wallet</option>
+                    <option value="Cash">Cash</option>
+                  </select>
+                </div>
+              </div>
+              <div className="flex justify-end gap-3 pt-2">
+                <button onClick={() => setShowRecordModal(false)} className="px-4 py-2.5 text-sm font-medium text-[#64748B] hover:bg-[#F8F9FB] rounded-xl cursor-pointer transition-colors">Cancel</button>
+                <button onClick={() => setShowRecordModal(false)} className="px-5 py-2.5 text-sm font-semibold text-white bg-[#FD6100] hover:bg-[#e05700] rounded-xl cursor-pointer transition-colors">Record Donation</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

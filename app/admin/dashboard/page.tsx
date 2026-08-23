@@ -1,10 +1,10 @@
-import AdminLayout from "@/components/admin/AdminLayout";
 import { Users, Heart, FolderKanban, Image, TrendingUp, ArrowUpRight, Building2 } from "lucide-react";
+
 
 const stats = [
   {
     label: "Total Donations",
-    value: "₹12,45,000",
+    value: "रु 12,45,000",
     change: "+12.5%",
     changeLabel: "vs last month",
     icon: Heart,
@@ -59,16 +59,16 @@ const stats = [
 ];
 
 const recentDonations = [
-  { id: 1, donor: "Rajesh Kumar", amount: "₹5,000", type: "Monthly", program: "Education", date: "2 hours ago", status: "Completed" },
-  { id: 2, donor: "Priya Sharma", amount: "₹10,000", type: "One-time", program: "Healthcare", date: "5 hours ago", status: "Completed" },
-  { id: 3, donor: "Amit Patel", amount: "₹2,500", type: "Monthly", program: "Environment", date: "1 day ago", status: "Completed" },
-  { id: 4, donor: "Sunita Devi", amount: "₹15,000", type: "One-time", program: "Women's Empowerment", date: "2 days ago", status: "Completed" },
-  { id: 5, donor: "Vikram Singh", amount: "₹3,000", type: "Monthly", program: "Education", date: "3 days ago", status: "Pending" },
+  { id: 1, donor: "Rajesh Kumar", amount: "रु 5,000", type: "Monthly", program: "Education", date: "2 hours ago", status: "Completed" },
+  { id: 2, donor: "Priya Sharma", amount: "रु 10,000", type: "One-time", program: "Healthcare", date: "5 hours ago", status: "Completed" },
+  { id: 3, donor: "Amit Patel", amount: "रु 2,500", type: "Monthly", program: "Environment", date: "1 day ago", status: "Completed" },
+  { id: 4, donor: "Sunita Devi", amount: "रु 15,000", type: "One-time", program: "Women's Empowerment", date: "2 days ago", status: "Completed" },
+  { id: 5, donor: "Vikram Singh", amount: "रु 3,000", type: "Monthly", program: "Education", date: "3 days ago", status: "Pending" },
 ];
 
 const recentActivity = [
   { id: 1, action: "New project created", detail: "Rural Smart School Initiative", time: "10 min ago", user: "Admin" },
-  { id: 2, action: "Donation received", detail: "₹5,000 from Rajesh Kumar", time: "2 hours ago", user: "System" },
+  { id: 2, action: "Donation received", detail: "रु 5,000 from Rajesh Kumar", time: "2 hours ago", user: "System" },
   { id: 3, action: "Gallery updated", detail: "Added 2 new images to Education", time: "3 hours ago", user: "Content Manager" },
   { id: 4, action: "Volunteer registered", detail: "Priya Sharma for Healthcare drive", time: "5 hours ago", user: "System" },
   { id: 5, action: "Program updated", detail: "Women's Empowerment - new batch added", time: "1 day ago", user: "Program Manager" },
@@ -182,7 +182,13 @@ function RecentActivityFeed() {
 
 export default function DashboardPage() {
   return (
-    <AdminLayout title="Dashboard">
+    <div>
+      {/* Page Header */}
+      <div className="mb-6">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-[#012358] tracking-tight">Dashboard</h2>
+        <p className="text-[#64748B] text-sm md:text-base mt-1">Overview of your organization&apos;s activity and performance</p>
+      </div>
+
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-6 mb-6 md:mb-8">
         {stats.map((stat) => (
@@ -202,7 +208,7 @@ export default function DashboardPage() {
           <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6">
             <h3 className="text-lg font-bold text-[#012358] mb-4">Quick Actions</h3>
             <div className="space-y-3">
-              <a href="/admin/content/projects/new" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F8F9FB] border border-[#E2E8F0] hover:border-[#005DCD]/50 hover:bg-white transition-all group">
+              <a href="/admin/content/projects" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F8F9FB] border border-[#E2E8F0] hover:border-[#005DCD]/50 hover:bg-white transition-all group">
                 <div className="w-10 h-10 rounded-xl bg-[#005DCD]/10 text-[#005DCD] flex items-center justify-center group-hover:bg-[#005DCD] group-hover:text-white transition-colors">
                   <FolderKanban className="w-5 h-5" />
                 </div>
@@ -211,7 +217,7 @@ export default function DashboardPage() {
                   <p className="text-xs text-[#64748B]">Create a new field project</p>
                 </div>
               </a>
-              <a href="/admin/content/programs/new" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F8F9FB] border border-[#E2E8F0] hover:border-[#005DCD]/50 hover:bg-white transition-all group">
+              <a href="/admin/content/programs" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F8F9FB] border border-[#E2E8F0] hover:border-[#005DCD]/50 hover:bg-white transition-all group">
                 <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                   <Building2 className="w-5 h-5" />
                 </div>
@@ -220,7 +226,7 @@ export default function DashboardPage() {
                   <p className="text-xs text-[#64748B]">Create a core program</p>
                 </div>
               </a>
-              <a href="/admin/content/gallery/new" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F8F9FB] border border-[#E2E8F0] hover:border-[#005DCD]/50 hover:bg-white transition-all group">
+              <a href="/admin/content/gallery" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F8F9FB] border border-[#E2E8F0] hover:border-[#005DCD]/50 hover:bg-white transition-all group">
                 <div className="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white transition-colors">
                   <Image className="w-5 h-5" aria-hidden="true" />
                 </div>
@@ -229,7 +235,7 @@ export default function DashboardPage() {
                   <p className="text-xs text-[#64748B]">Add photos to gallery</p>
                 </div>
               </a>
-              <a href="/admin/donations/new" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F8F9FB] border border-[#E2E8F0] hover:border-[#005DCD]/50 hover:bg-white transition-all group">
+              <a href="/admin/donations" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F8F9FB] border border-[#E2E8F0] hover:border-[#005DCD]/50 hover:bg-white transition-all group">
                 <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center group-hover:bg-rose-600 group-hover:text-white transition-colors">
                   <Heart className="w-5 h-5" />
                 </div>
@@ -285,6 +291,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-    </AdminLayout>
+    </div>
   );
 }
