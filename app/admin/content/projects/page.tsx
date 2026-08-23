@@ -1,5 +1,5 @@
 import AdminPage from "@/app/admin/layout";
-import { Plus, Search, Filter, MoreVertical, Edit, Trash2, Eye, MapPin, Clock, FolderKanban } from "lucide-react";
+import { Plus, Search, MoreVertical, Edit, Trash2, Eye, MapPin, Clock, FolderKanban } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 

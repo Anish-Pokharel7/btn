@@ -1,10 +1,12 @@
 "use client";
 
-import { Bell, Sun, Moon, LogOut, User, ChevronDown, Menu } from "lucide-react";
+import { Bell, Sun, Moon, LogOut, User, ChevronDown, Menu, Settings, LayoutDashboard, FolderKanban, Building2, Image, Heart, Users, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function AdminHeader() {
+  const pathname = usePathname();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

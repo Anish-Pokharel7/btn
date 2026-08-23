@@ -11,8 +11,6 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
-  BarChart2,
-  FileText,
   Building2,
 } from "lucide-react";
 import { useState } from "react";

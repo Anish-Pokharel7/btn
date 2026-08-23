@@ -1,5 +1,5 @@
 import AdminPage from "@/app/admin/layout";
-import { Plus, Search, MoreVertical, Edit, Trash2, Eye, Image, Upload, Filter, X } from "lucide-react";
+import { Search, MoreVertical, Edit, Trash2, Eye, Image, Upload, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -129,14 +129,6 @@ export default function GalleryPage() {
 
   const toggleSelect = (id: string) => {
     setSelectedItems((prev) => prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]);
-  };
-
-  const toggleSelectAll = () => {
-    if (selectedItems.length === filteredItems.length) {
-      setSelectedItems([]);
-    } else {
-      setSelectedItems(filteredItems.map((i) => i.id));
-    }
   };
 
   return (
